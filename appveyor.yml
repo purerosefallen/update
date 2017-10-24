@@ -1,0 +1,17 @@
+version: '{build}'
+skip_tags: true
+
+configuration: Release
+
+build: 
+    project: update.sln
+    parallel: true
+
+after_build:
+  - cd Win32 && 7z a ../Win32.zip ./* -xr!.git* -mx9 && cd ..
+
+test: off
+
+artifacts:
+  - path: Win32.zip
+    name: Update
