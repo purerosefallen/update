@@ -98,7 +98,7 @@ namespace update
 		}
 		
 		void showProcess(int i,int all){
-			Console.Title=string.Format("PROGRESS：{0}/{1}",i,all);
+			Console.Title=string.Format("PROGRESS: {0}/{1}",i,all);
 		}
 		
 		bool Download(string name,string md5,bool isHide){
