@@ -13,7 +13,7 @@ namespace update
 	{
 		public static void Main(string[] args)
 		{
-			Console.Title="自动更新";
+			Console.Title="AUTOUPDATE";
 			Config.Init(null,null);
 
 			if(args.Length>0){
@@ -29,7 +29,7 @@ namespace update
 			}else{
 				Download(null,null);
 			}
-			Console.WriteLine("按任意键继续 . . . ");
+			Console.WriteLine("Press Any Key to continue ... ... ");
 			Console.ReadKey(true);
 		}
 		private static void UpdateList(string[] args){

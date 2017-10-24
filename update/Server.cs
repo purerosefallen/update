@@ -25,22 +25,22 @@ namespace update
 		}
 
 		public void Run(){
-			Console.WriteLine("开始更新文件列表。。。");
+			Console.WriteLine("Updating Filelist... ...");
 			list.Clear();
 			AddDir(Config.workPath);//当前目录所有文件
 			//版本
 			MyUtil.saveText(Config.versionFile, DateTime.Now.ToString());
 			//重命名列表
-			MyUtil.saveText(Config.renameFile,"# 重命名列表 (编码为UTF-8，用tab键隔开，采用相对路径)"
+			MyUtil.saveText(Config.renameFile,"# Rename List (Codepage is UTF-8, please use TAB to seperate entries, Use Relative Address.)"
 			                +Environment.NewLine
-			                +"# 例如：前面改名为后面。"
+			                +"# An example of renaming a file from 123456.jpg to 456789.jpg"
 			                +Environment.NewLine
 			                +"# pics/123456.jpg	pics/456789.jpg");
 			//删除列表
-			MyUtil.saveText(Config.deleteFile,"# 删除列表 (编码为UTF-8，采用相对路径)");
+			MyUtil.saveText(Config.deleteFile,"# Delete List (Codepage is UTF-8, please use TAB to seperate entries, Use Relative Address.)");
 			//文件列表
 			MyUtil.saveList(Config.filelistFile, list.ToArray());//文件列表
-			Console.WriteLine("文件列表更新完成。。。");
+			Console.WriteLine("Filelist Updated!!");
 		}
 		void AddDir(string dir){
 			//所有文件
@@ -77,7 +77,7 @@ namespace update
 				return;
 			}
 			string md5=MyUtil.MD5_File(file);
-			Console.WriteLine("文件:	"+name);
+			Console.WriteLine("FILE:	"+name);
 			Console.WriteLine("MD5:	"+md5);
 			list.Add(new fileinfo(name, md5));
 		}

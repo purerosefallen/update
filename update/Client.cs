@@ -33,7 +33,7 @@ namespace update
 
 			//代理设置
 			if(Config.useProxy){
-				Console.WriteLine("使用代理："+Config.proxyIP+":"+Config.proxyPort);
+				Console.WriteLine("USE PROXY:"+Config.proxyIP+":"+Config.proxyPort);
 				MyHttp.setProxy(true, Config.proxyIP, Config.proxyPort);
 			}
 			else{
@@ -50,7 +50,7 @@ namespace update
 				if(!line.StartsWith("#")){
 					string file=Config.GetPath(line);
 					if(File.Exists(file)){
-						Console.WriteLine("删除文件："+line);
+						Console.WriteLine("DELETE FILE:"+line);
 						File.Delete(file);
 					}
 				}
@@ -68,7 +68,7 @@ namespace update
 					if(files.Length>=2){
 						string file1=Config.GetPath(files[0]);
 						string file2=Config.GetPath(files[1]);
-						Console.WriteLine("重命名："+files[0]+"=>"+files[1]);
+						Console.WriteLine("RENAME:"+files[0]+"=>"+files[1]);
 						File.Move(file1,file2);
 					}
 				}
@@ -85,20 +85,20 @@ namespace update
 				showProcess(num++,all_num);
 			if(!isOK){
 				if(ff!=null){
-					Console.WriteLine("下载失败:"+Config.GetUrl(ff.name));
+					Console.WriteLine("DOWNLOAD FAILED:"+Config.GetUrl(ff.name));
 					errorlist.Add(ff);
 				}else{
-					Console.WriteLine("下载失败");
+					Console.WriteLine("DOWNLOAD FAILED");
 				}
 			}else{
 				if(ff!=null){
-					Console.WriteLine("下载完成:"+ff.name);
+					Console.WriteLine("DOWNLOAD COMPLETE:"+ff.name);
 				}
 			}
 		}
 		
 		void showProcess(int i,int all){
-			Console.Title=string.Format("进度：{0}/{1}",i,all);
+			Console.Title=string.Format("PROGRESS：{0}/{1}",i,all);
 		}
 		
 		bool Download(string name,string md5,bool isHide){
@@ -106,13 +106,13 @@ namespace update
 			
 			if(File.Exists(file)){
 				if(md5==MyUtil.MD5_File(file)){//一致
-					Console.WriteLine("无须下载："+name);
+					Console.WriteLine("SKIPPED:"+name);
 					showProcess(num++,all_num);
 					return true;
 				}
 				else{
 					if(MyUtil.checkList(Config.ignores,name)){//忽略更新
-						Console.WriteLine("忽略更新："+name);
+						Console.WriteLine("IGNORED:"+name);
 						showProcess(num++,all_num);
 						return true;
 					}
@@ -130,14 +130,14 @@ namespace update
 		
 		void Update(){
 			if(!File.Exists(Config.errorFile)){//上一次下载是否失败
-				Console.WriteLine("下载文件列表。。。");
+				Console.WriteLine("Downloading Filelist... ...");
 				if(!MyHttp.DownLoad(Config.url_filelist, Config.filelistFile))
 					return;
-				Console.WriteLine("开始更新。。。");
+				Console.WriteLine("Starting Update... ...");
 			}else{
 				File.Delete(Config.filelistFile);
 				File.Move(Config.errorFile, Config.filelistFile);
-				Console.WriteLine("继续上次更新。。。");
+				Console.WriteLine("Continuing Update... ...");
 			}
 
 			string[] lines=File.ReadAllLines(Config.filelistFile, Encoding.UTF8);
@@ -156,33 +156,33 @@ namespace update
 
 			}
 			if(errorlist.Count>0){
-				Console.WriteLine("部分文件下载失败。。。");
+				Console.WriteLine("Some of files failed to update... ...");
 				MyUtil.saveList(Config.errorFile, errorlist.ToArray());
 			}
 		}
 		void ShowTask(int n){
 			if(n==0)
 				return;
-			Console.WriteLine(string.Format("还有个{0}文件还在下载。。。", n));
+			Console.WriteLine(string.Format("{0} Files Remaining... ...", n));
 		}
 		
 		public void Run(){
-			Console.WriteLine("更新地址："+Config.url_home);
-			Console.WriteLine("下载保存在："+Config.workPath);
-			Console.WriteLine("设置文件："+Assembly.GetExecutingAssembly().Location+".config");
+			Console.WriteLine("UPDATE FROM:"+Config.url_home);
+			Console.WriteLine("DOWNLOAD TO:"+Config.workPath);
+			Console.WriteLine("CONFIG FILE:"+Assembly.GetExecutingAssembly().Location+".config");
 
 			if(!File.Exists(Config.errorFile)){
-				Console.WriteLine("获取新版本。。。");
+				Console.WriteLine("Getting New Version ... ...");
 				//version
 				MyHttp.DownLoad(Config.url_version, Config.newVersionFile);
 				//版本号一致
 				string md5_1=MyUtil.MD5_File(Config.versionFile);
 				string md5_2=MyUtil.MD5_File(Config.newVersionFile);
 				if(md5_1 == md5_2 && md5_1.Length>0){
-					Console.WriteLine("已经是最新。");
+					Console.WriteLine("Your files are already up-to-date.");
 					return;
 				}
-				Console.WriteLine("发现新版本。。。");
+				Console.WriteLine("New Version Discovered... ...");
 				//删除旧文件
 				Delete();
 				//重命名文件
@@ -195,7 +195,7 @@ namespace update
 				File.Delete(Config.versionFile);
 				File.Move(Config.newVersionFile, Config.versionFile);
 			}
-			Console.WriteLine("更新完成，可以关闭本程序。。。");
+			Console.WriteLine("UPDATE COMPLETE!! You can safely close this window, press any key to quit.");
 		}
 	}
 }
