@@ -62,6 +62,9 @@ namespace update
 			string exename = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
 			if(filename.EndsWith("Thumbs.db",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith(".gitignore",StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith("LICENSE",StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith("appveyor.yml",StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith("start.htm",StringComparison.OrdinalIgnoreCase)
 			   || file == exename
 			   || file == exename+".config"
 			  )
