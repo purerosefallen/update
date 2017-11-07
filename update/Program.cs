@@ -18,7 +18,7 @@ namespace update
 
 			if(args.Length>0){
 				switch(args[0]){
-					case "-m":UpdateList(args);break;
+					case "-m":UpdateList(args);return;
 				case "-d":
 					if(args.Length==2)
 						Download(args[1],null);
