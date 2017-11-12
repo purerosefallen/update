@@ -68,6 +68,7 @@ namespace update
 			   || filename.EndsWith("web.config",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("update-server.bat",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("desktop.ini",StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith("start.htm",StringComparison.OrdinalIgnoreCase)
 			   || file == exename
 			   || file == exename+".config"
 			  )
