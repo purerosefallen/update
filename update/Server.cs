@@ -19,9 +19,11 @@ namespace update
 	public class Server
 	{
 		List<fileinfo> list;	//文件信息列表
-		
+		bool ci;
+
 		public Server(){
 			list=new List<fileinfo>();
+			ci=false;
 		}
 
 		public void Run(){
@@ -87,8 +89,10 @@ namespace update
 				return;
 			}
 			string md5=MyUtil.MD5_File(file);
-			Console.WriteLine("FILE:	"+name);
-			Console.WriteLine("MD5:	"+md5);
+			if(!ci) {
+				Console.WriteLine("FILE:	"+name);
+				Console.WriteLine("MD5:	"+md5);
+			}
 			list.Add(new fileinfo(name, md5));
 		}
 	}
