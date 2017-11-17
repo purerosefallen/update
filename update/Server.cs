@@ -64,11 +64,14 @@ namespace update
 			   || filename.EndsWith(".gitignore",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("LICENSE",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("appveyor.yml",StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith(".travis.yml",StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith("circle.yml",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("README.md",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("web.config",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("update-server.bat",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("desktop.ini",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("start.htm",StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith("update.exe.config",StringComparison.OrdinalIgnoreCase)
 			   || file == exename
 			   || file == exename+".config"
 			  )
