@@ -41,7 +41,6 @@ namespace update
 			if(args[0] == "-ci")
 				ci_run = true;
 			Server server=new Server();
-			server.ci=ci_run;
 			server.Run(ci_run);//更新文件列表
 		}
 		private static void Download(string path,string url){

@@ -23,11 +23,14 @@ namespace update
 
 		public Server(){
 			list=new List<fileinfo>();
-			ci=false;
 		}
 
-		public void Run(){
-			Console.WriteLine("Updating Filelist... ...");
+		public void Run(bool ci_run){
+			ci=ci_run;
+			if(ci)
+				Console.WriteLine("Updating Filelist on CI... ...");				
+			else
+				Console.WriteLine("Updating Filelist... ...");
 			list.Clear();
 			AddDir(Config.workPath);//当前目录所有文件
 			//版本
