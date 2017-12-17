@@ -20,18 +20,17 @@ namespace update
 				switch(args[0]){
 					case "-m":UpdateList(args);break;
 					case "-ci":UpdateList(args);return;
+					case "--ignore-sound":Download(null,null,true);break;
 				case "-d":
 					if(args.Length==2)
 						Download(args[1],null,false);
 					else{
 						if(args[2]=="--ignore-sound")
 							Download(args[1],null,true);
-						else if(args[3]=="--ignore-sound");
+						else if(args[3]=="--ignore-sound")
 							Download(args[1],args[2],true);
 					}
 					break;
-				case "--ignore-sound":
-					Download(null,null,true);
 				}
 			}else{
 				Download(null,null,false);

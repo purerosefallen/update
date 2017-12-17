@@ -129,7 +129,7 @@ namespace update
 			//return MyHttp.DownLoad(url_download+name,file);
 		}
 		
-		void Update(ignore_sound){
+		void Update(bool ignore_sound){
 			if(!File.Exists(Config.errorFile)){//上一次下载是否失败
 				Console.WriteLine("Downloading Filelist... ...");
 				if(!MyHttp.DownLoad(Config.url_filelist, Config.filelistFile))
@@ -140,7 +140,9 @@ namespace update
 				File.Move(Config.errorFile, Config.filelistFile);
 				Console.WriteLine("Continuing Update... ...");
 			}
-
+			if(ignore_sound){
+				Console.WriteLine("The sound files will be ignored.");
+			}
 			string[] lines=File.ReadAllLines(Config.filelistFile, Encoding.UTF8);
 			all_num=lines.Length;
 			num=0;
