@@ -11,27 +11,12 @@ build:
     project: update.sln
     parallel: true
 
-after_build:
-  - git config --global user.name "Smile-DK"
-  - git config --global user.email "2236141431@qq.com"
-  
-  - git clone --branch=data https://github.com/purerosefallen/ygopro-222DIY data
-  
-  - cp -rf Win32/update.exe data/update
-  - git add . -A
-  - git commit -m "Build Update"
-  - git push https://%AUTH_TOKEN%@github.com/purerosefallen/ygopro-222DIY data
-  
-  - cd ../Win32
-  - 7z a ../Update.zip ./* -xr!.git* -mx9
-  - cd ..
+after_build: 
+  - cp -rf Win32/update.exe .
+
 
 test: off
 
 artifacts:
-  - path: Update.zip
+  - path: update.exe
     name: Update
-
-branches:
-  only:
-    - master
