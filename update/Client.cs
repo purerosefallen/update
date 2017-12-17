@@ -101,21 +101,22 @@ namespace update
 			Console.Title=string.Format("PROGRESS: {0}/{1}",i,all);
 		}
 		
-		bool Download(string name,string md5,bool isHide){
+		bool Download(string name,string md5,bool isHide,bool ignore_sound){
 			string file=Config.GetPath(name);
-			
+			if(ignore_sound && (name.EndsWith(".mp3",StringComparison.OrdinalIgnoreCase) || name.EndsWith(".wav",StringComparison.OrdinalIgnoreCase))){ //ignores sound
+				Console.WriteLine("SOUND IGNORED:"+name);
+				showProcess(num++,all_num);
+				return true;
+			}
 			if(File.Exists(file)){
 				if(md5==MyUtil.MD5_File(file)){//一致
 					Console.WriteLine("SKIPPED:"+name);
 					showProcess(num++,all_num);
 					return true;
-				}
-				else{
-					if(MyUtil.checkList(Config.ignores,name)){//忽略更新
-						Console.WriteLine("IGNORED:"+name);
-						showProcess(num++,all_num);
-						return true;
-					}
+				} else if(MyUtil.checkList(Config.ignores,name)){//忽略更新
+					Console.WriteLine("IGNORED:"+name);
+					showProcess(num++,all_num);
+					return true;
 				}
 			}
 			//线程已满
@@ -128,7 +129,7 @@ namespace update
 			//return MyHttp.DownLoad(url_download+name,file);
 		}
 		
-		void Update(){
+		void Update(ignore_sound){
 			if(!File.Exists(Config.errorFile)){//上一次下载是否失败
 				Console.WriteLine("Downloading Filelist... ...");
 				if(!MyHttp.DownLoad(Config.url_filelist, Config.filelistFile))
@@ -148,7 +149,7 @@ namespace update
 				if(!line.StartsWith("#")){
 					string[] words=line.Split('\t');
 					if(words.Length>=2){
-						Download(words[0], words[1],false);
+						Download(words[0], words[1], false, ignore_sound);
 					}
 				}
 			}
@@ -166,7 +167,7 @@ namespace update
 			Console.WriteLine(string.Format("{0} Files Remaining... ...", n));
 		}
 		
-		public void Run(){
+		public void Run(bool ignore_sound){
 			Console.WriteLine("UPDATE FROM:"+Config.url_home);
 			Console.WriteLine("DOWNLOAD TO:"+Config.workPath);
 			Console.WriteLine("CONFIG FILE:"+Assembly.GetExecutingAssembly().Location+".config");
@@ -190,7 +191,7 @@ namespace update
 			}
 			Console.Clear();
 			//filelist
-			Update();
+			Update(ignore_sound);
 			if(File.Exists(Config.newVersionFile)){
 				File.Delete(Config.versionFile);
 				File.Move(Config.newVersionFile, Config.versionFile);

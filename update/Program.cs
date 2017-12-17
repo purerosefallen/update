@@ -22,13 +22,19 @@ namespace update
 					case "-ci":UpdateList(args);return;
 				case "-d":
 					if(args.Length==2)
-						Download(args[1],null);
-					else
-						Download(args[1],args[2]);
+						Download(args[1],null,false);
+					else{
+						if(args[2]=="--ignore-sound")
+							Download(args[1],null,true);
+						else if(args[3]=="--ignore-sound");
+							Download(args[1],args[2],true);
+					}
 					break;
+				case "--ignore-sound":
+					Download(null,null,true);
 				}
 			}else{
-				Download(null,null);
+				Download(null,null,false);
 			}
 			Console.WriteLine("Press Any Key to continue ... ... ");
 			Console.ReadKey(true);
@@ -43,12 +49,12 @@ namespace update
 			Server server=new Server();
 			server.Run(ci_run);//更新文件列表
 		}
-		private static void Download(string path,string url){
+		private static void Download(string path,string url,bool ignore_sound){
 			//线程数
 			MyHttp.init(Config.ThreadNum);
 			Client client=new Client(path,url);
 			MyHttp.SetListner(client);
-			client.Run();//开始更新
+			client.Run(ignore_sound);//开始更新
 		}
 	}
 }
