@@ -103,7 +103,7 @@ namespace update
 		
 		bool Download(string name,string md5,bool isHide,bool ignore_sound){
 			string file=Config.GetPath(name);
-			if(ignore_sound && (name.EndsWith(".mp3",StringComparison.OrdinalIgnoreCase) || name.EndsWith(".wav",StringComparison.OrdinalIgnoreCase))){ //ignores sound
+			if(ignore_sound && (name.EndsWith(".mp3",StringComparison.OrdinalIgnoreCase) || name.EndsWith(".ogg",StringComparison.OrdinalIgnoreCase) || name.EndsWith(".wav",StringComparison.OrdinalIgnoreCase))){ //ignores sound
 				Console.WriteLine("SOUND IGNORED:"+name);
 				showProcess(num++,all_num);
 				return true;
