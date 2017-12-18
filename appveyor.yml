@@ -17,6 +17,7 @@ after_build:
   
   - git clone --branch=data https://github.com/purerosefallen/ygopro-222DIY data
   
+  - cd data
   - cp -rf Win32/update.exe data/update
   - git add . -A
   - git commit -m "Build Update"
