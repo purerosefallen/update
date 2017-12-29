@@ -21,7 +21,7 @@ after_build:
   - cd data
   - git add . -A
   - git commit -m "Build Update"
-  - git push https://%AUTH_TOKEN%@github.com/purerosefallen/ygopro-222DIY master
+  - git push https://%AUTH_TOKEN%@github.com/purerosefallen/ygopro-222DIY-data master
   
   - cd ../Win32
   - 7z a ../Update.zip ./* -xr!.git* -mx9
