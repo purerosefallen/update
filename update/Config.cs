@@ -80,12 +80,12 @@ namespace update
 				url_home = ConfigurationManager.AppSettings["url"];
 			else
 				url_home=url;
-			url_version = url_home+"update/version.txt";
-			url_delete = url_home+"update/delete.txt";
-			url_filelist = url_home+"update/filelist.txt";
-			url_rename = url_home+"update/rename.txt";
+			url_version = url_home+"update-koishipro/version.txt";
+			url_delete = url_home+"update-koishipro/delete.txt";
+			url_filelist = url_home+"update-koishipro/filelist.txt";
+			url_rename = url_home+"update-koishipro/rename.txt";
 			
-			infoPath=Path.Combine(workPath, "update");
+			infoPath=Path.Combine(workPath, "update-koishipro");
 			if(!Directory.Exists(infoPath)){
 				Directory.CreateDirectory(infoPath);
 			}
