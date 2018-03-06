@@ -58,9 +58,9 @@ namespace update
 			
 			foreach(string d in dirs){
 				if(!d.EndsWith(Path.DirectorySeparatorChar+".git",StringComparison.OrdinalIgnoreCase)
-					|| !d.EndsWith(Path.DirectorySeparatorChar+"gframe",StringComparison.OrdinalIgnoreCase)
-					|| !d.EndsWith(Path.DirectorySeparatorChar+"ocgcore",StringComparison.OrdinalIgnoreCase)
-					|| !d.EndsWith(Path.DirectorySeparatorChar+"premake",StringComparison.OrdinalIgnoreCase)
+					&& !d.EndsWith(Path.DirectorySeparatorChar+"gframe",StringComparison.OrdinalIgnoreCase)
+					&& !d.EndsWith(Path.DirectorySeparatorChar+"ocgcore",StringComparison.OrdinalIgnoreCase)
+					&& !d.EndsWith(Path.DirectorySeparatorChar+"premake",StringComparison.OrdinalIgnoreCase)
 				)
 					AddDir(d);//添加子目录的所有文件
 			}
