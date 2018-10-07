@@ -63,6 +63,7 @@ namespace update
 					&& !d.EndsWith(Path.DirectorySeparatorChar+"premake",StringComparison.OrdinalIgnoreCase)
 					&& !d.EndsWith(Path.DirectorySeparatorChar+"cmake",StringComparison.OrdinalIgnoreCase)
 					&& !d.EndsWith(Path.DirectorySeparatorChar+"lua",StringComparison.OrdinalIgnoreCase)
+					&& !d.EndsWith(Path.DirectorySeparatorChar+"ikpmp3",StringComparison.OrdinalIgnoreCase)
 				)
 					AddDir(d);//添加子目录的所有文件
 			}
