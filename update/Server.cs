@@ -61,6 +61,8 @@ namespace update
 					&& !d.EndsWith(Path.DirectorySeparatorChar+"gframe",StringComparison.OrdinalIgnoreCase)
 					&& !d.EndsWith(Path.DirectorySeparatorChar+"ocgcore",StringComparison.OrdinalIgnoreCase)
 					&& !d.EndsWith(Path.DirectorySeparatorChar+"premake",StringComparison.OrdinalIgnoreCase)
+					&& !d.EndsWith(Path.DirectorySeparatorChar+"cmake",StringComparison.OrdinalIgnoreCase)
+					&& !d.EndsWith(Path.DirectorySeparatorChar+"lua",StringComparison.OrdinalIgnoreCase)
 				)
 					AddDir(d);//添加子目录的所有文件
 			}
@@ -82,6 +84,7 @@ namespace update
 			   || filename.EndsWith("update.exe.config",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("premake4.lua",StringComparison.OrdinalIgnoreCase)
 			   || filename.EndsWith("premake5.lua",StringComparison.OrdinalIgnoreCase)
+			   || filename.EndsWith("CMakeLists.txt",StringComparison.OrdinalIgnoreCase)
 			   || file == exename
 			   || file == exename+".config"
 			  )
