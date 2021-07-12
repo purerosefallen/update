@@ -132,7 +132,12 @@ namespace update
 		void Update(bool ignore_sound){
 			if(!File.Exists(Config.errorFile)){//上一次下载是否失败
 				Console.WriteLine("Downloading Filelist... ...");
-				if(!MyHttp.DownLoad(Config.url_filelist, Config.filelistFile))
+#if DEBUG
+				Console.WriteLine("Press any key to continue:");
+				Console.WriteLine(Config.url_filelist);
+				Console.ReadKey();
+#endif
+				if (!MyHttp.DownLoad(Config.url_filelist, Config.filelistFile))
 					return;
 				Console.WriteLine("Starting Update... ...");
 			}else{
