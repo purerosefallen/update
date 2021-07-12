@@ -116,8 +116,12 @@ namespace update
 				File.Delete(filename);
 				File.Move(filename+".tmp", filename);
 			}
-			catch (System.Exception)
+			catch (System.Exception ex)
 			{
+#if DEBUG
+				Console.WriteLine($"Error when downloading {filename}, url is {url} ");
+				Console.WriteLine(ex.ToString());
+#endif
 				isOK= false;
 			}
 			isOK=File.Exists(filename);
