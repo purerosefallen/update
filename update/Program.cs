@@ -14,6 +14,15 @@ namespace update
 		public static void Main(string[] args)
 		{
 			Console.Title="AUTOUPDATE";
+			// 设置控制台缓冲区大小，以便显示进度条
+			try {
+				Console.BufferHeight = Math.Max(Console.BufferHeight, 50);
+				Console.BufferWidth = Math.Max(Console.BufferWidth, 100);
+			}
+			catch (Exception) {
+				// 忽略可能的控制台设置错误
+			}
+			
 			Config.Init(null,null);
 
 			if(args.Length>0){

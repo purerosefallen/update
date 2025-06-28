@@ -1,11 +1,4 @@
-﻿/*
- * 由SharpDevelop创建。
- * 用户： Acer
- * 日期: 2014-10-5
- * 时间: 8:04
- * 
- */
-using System;
+﻿using System;
 
 namespace update
 {
@@ -15,6 +8,9 @@ namespace update
 	public interface MyHttpListener
 	{
 		void OnStart(string name,string file);
+		void OnStart(string name,string file, int threadId);
+		void OnProgress(fileinfo ff, int threadId, long downloadedBytes, long totalBytes);
 		void OnEnd(fileinfo ff,bool isOK);
+		void OnEnd(fileinfo ff,bool isOK, int threadId);
 	}
 }
